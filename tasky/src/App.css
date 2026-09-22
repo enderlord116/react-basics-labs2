@@ -43,3 +43,8 @@ div {
 .description{
   font-style: italic;
 }
+
+.priority{
+  font-style: italic;
+  font-size: large;
+}
