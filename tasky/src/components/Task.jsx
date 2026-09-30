@@ -7,81 +7,101 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DoneIcon from '@mui/icons-material/Done';
+import Tooltip from "@mui/material/Tooltip";
+import { ThemeProvider, createTheme } from "@mui/material";
 
 const Task = (props) => {
 
     return (
-        <Grid
-        key={props.id}
-        size={{ xs: 12, md: 4 }}
+        <ThemeProvider
+          theme={createTheme({
+            breakpoints: {
+              values: {
+                laptop: 1024,
+                tablet: 640,
+                mobile: 0,
+              },
+            },
+          })}
         >
-            <Card
-                sx={{
-                    backgroundColor: props.done ? 'lightgrey' : 'lightblue',
-                    padding: '20px'
-                }}
+            <Grid
+            key={props.id}
+            size={{mobile: 12, tablet: 6, laptop: 4}}
             >
-                <CardHeader
-                    title={props.title}
+                <Card
                     sx={{
-                        backgroundColor: 'white',
-                        borderRadius: '3px',
-                        padding: '20px',
-                        textAlign: 'center'
-                    }}
-                />    
-                <CardContent>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'baseline',
-                            mb: 2,
-                            padding: '20px'
-                        }}
-                    >
-                        <Typography
-                            component="p"
-                            variant="subtitle2"
-                            color="text.primary"
-                        >
-                            Due: {props.deadline}
-                        </Typography>
-                    </Box>
-                    <Typography
-                        component="p"
-                        variant="subtitle1"
-                        align="center"
-                        sx={{ fontStyle: 'italic' }}
-                    >
-                        {props.description}
-                    </Typography>
-                </CardContent>
-                <CardActions
-                    sx={{
-                        justifyContent: 'space-between',
+                        backgroundColor: props.done ? 'lightgrey' : 'lightblue',
                         padding: '20px'
                     }}
                 >
-                    <Button
-                        variant="contained"
-                        size="small"
-                        color="success"
-                        onClick={props.markDone}
+                    <CardHeader
+                        title={props.title}
+                        sx={{
+                            backgroundColor: 'white',
+                            borderRadius: '3px',
+                            padding: '20px',
+                            textAlign: 'center'
+                        }}
+                    />    
+                    <CardContent>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'baseline',
+                                mb: 2,
+                                padding: '20px'
+                            }}
+                        >
+                            <Typography
+                                component="p"
+                                variant="subtitle2"
+                                color="text.primary"
+                            >
+                                Due: {props.deadline}
+                            </Typography>
+                        </Box>
+                        <Typography
+                            component="p"
+                            variant="subtitle1"
+                            align="center"
+                            sx={{ fontStyle: 'italic' }}
+                        >
+                            {props.description}
+                        </Typography>
+                    </CardContent>
+                    <CardActions
+                        sx={{
+                            justifyContent: 'space-between',
+                            padding: '20px'
+                        }}
                     >
-                        Done
-                    </Button>
-                    <Button
-                        variant="contained"
-                        size="small"
-                        color="error"
-                        onClick={props.deleteTask}
-                    >
-                        Delete
-                    </Button>
-                </CardActions>
-            </Card>
-        </Grid>
+                        <Tooltip title="Mark as Done">
+                            <Button
+                                variant="contained"
+                                size="small"
+                                color="success"
+                                onClick={props.markDone}
+                            >
+                                <DoneIcon/> Done
+                            </Button>
+                        </Tooltip>
+                        <Tooltip title="Delete Task (Cant Be Undone)">
+                            <Button
+                                variant="contained"
+                                size="small"
+                                color="error"
+                                onClick={props.deleteTask}
+                            >
+                                <DeleteIcon/> Delete
+                            </Button>
+                        </Tooltip>
+                    </CardActions>
+                </Card>
+            </Grid>
+        </ThemeProvider>
     )
 }
 

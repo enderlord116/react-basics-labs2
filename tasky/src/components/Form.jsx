@@ -9,6 +9,9 @@ const AddTaskForm = (props) => {
         component="form"
         sx={{
             '& .MuiOutlinedInput-root': { m: 1, width: '30ch' },
+            backgroundColor: 'white',
+            borderRadius: '5px',
+            padding: '10px'
         }}
         onSubmit={props.submit}
     >

@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 function App() {
   const [ taskState, setTaskState ] = useState({
@@ -85,22 +85,23 @@ function App() {
             color: 'white',
             padding: '20px',
             margin: '20px 0 40px 0',
-            borderRadius: '4px'
+            borderRadius: '4px',
+            fontWeight: 'bold'
           }}
         >
           Tasky
         </Typography>
       </Container>             
-      <Container maxWidth="md" component="main">
+      <Container component="main">
         <Grid
-          container
-          spacing={5}
+          container spacing={5}
           sx={{
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           {taskState.tasks.map((task, index) => (
             <Task
+            
               title={task.title}
               description={task.description}
               deadline={task.deadline}
@@ -118,6 +119,7 @@ function App() {
           borderTop: (theme) => `1px solid ${theme.palette.divider}`,
           my: 6,
           py: 6,
+          backgroundColor: 'grey'
         }}
       >
         <Grid container sx={{
